@@ -36,7 +36,7 @@ public class AuthEntryPointJWT implements AuthenticationEntryPoint {
         body.put("message", authException.getMessage());
         body.put("error", "Authorized error ");
         body.put("path", request.getServletPath());
-//
+
         //Convert map object to format JSON and write it to output of response through ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(response.getOutputStream(), body);

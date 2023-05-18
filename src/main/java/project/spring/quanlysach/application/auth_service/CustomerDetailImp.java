@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import project.spring.quanlysach.domain.entity.Customer;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class CustomerDetailImp implements UserDetails {
     private String fullName;
     private String email;
     private String phone;
+    private Date birthday;
     private String username;
     @JsonIgnore
     private String password;
@@ -40,6 +42,7 @@ public class CustomerDetailImp implements UserDetails {
                 customer.getFullName(),
                 customer.getEmail(),
                 customer.getPhone(),
+                customer.getBirthday(),
                 customer.getUsername(),
                 customer.getPassword(),
                 authorities);

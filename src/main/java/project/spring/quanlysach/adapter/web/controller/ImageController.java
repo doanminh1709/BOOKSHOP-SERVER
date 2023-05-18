@@ -7,11 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import project.spring.quanlysach.adapter.web.base.RestApiV0;
-import project.spring.quanlysach.adapter.web.base.VsResponseUtil;
 import project.spring.quanlysach.application.constants.CommonConstant;
 import project.spring.quanlysach.application.constants.UrlConstant;
 import project.spring.quanlysach.application.services.IImageService;
-import project.spring.quanlysach.application.utils.UploadFileInProject;
 import project.spring.quanlysach.domain.dto.ImageDTO;
 
 import java.io.IOException;
@@ -20,6 +18,7 @@ import java.io.IOException;
 public class ImageController {
     @Autowired
     private IImageService imageService;
+
     @PostMapping(UrlConstant.Image.UPLOAD_IMAGE)
     @ApiOperation("Update new image")
     public ResponseEntity<?> uploadNewImage(@ModelAttribute ImageDTO imageDTO,

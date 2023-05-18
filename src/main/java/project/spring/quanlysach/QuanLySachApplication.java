@@ -7,8 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import project.spring.quanlysach.application.auth_service.CustomerDetailServiceImp;
-
+@EnableScheduling
 @SpringBootApplication
 public class QuanLySachApplication {
 

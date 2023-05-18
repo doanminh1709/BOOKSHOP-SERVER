@@ -37,7 +37,6 @@ import java.util.Collections;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomerDetailServiceImp customerDetailImp;
     private final AuthEntryPointJWT authEntryPointJWT;
-
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();

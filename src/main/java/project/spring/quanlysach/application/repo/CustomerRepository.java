@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import project.spring.quanlysach.domain.entity.Customer;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -35,6 +36,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query("SELECT c FROM Customer c")
     List<Customer> findCustomerByCity(String city);
-
 
 }

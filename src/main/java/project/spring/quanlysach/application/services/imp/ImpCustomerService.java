@@ -10,12 +10,15 @@ import project.spring.quanlysach.application.mapper.CustomerMapper;
 import project.spring.quanlysach.application.repo.ContactRepository;
 import project.spring.quanlysach.application.repo.CustomerRepository;
 import project.spring.quanlysach.application.services.ICustomerService;
-import project.spring.quanlysach.application.utils.AuthenticationHandler;
 import project.spring.quanlysach.config.exception.VsException;
 import project.spring.quanlysach.domain.dto.CustomerDTO;
 import project.spring.quanlysach.domain.entity.Contact;
 import project.spring.quanlysach.domain.entity.Customer;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,11 +28,9 @@ public class ImpCustomerService implements ICustomerService {
     private final CustomerRepository customerRepository;
     private final ContactRepository contactRepository;
     private final CustomerMapper customerMapper = Mappers.getMapper(CustomerMapper.class);
-    private final AuthenticationHandler authenticationHandler;
-    public ImpCustomerService(CustomerRepository customerRepository, ContactRepository contactRepository, AuthenticationHandler authenticationHandler) {
+    public ImpCustomerService(CustomerRepository customerRepository, ContactRepository contactRepository) {
         this.customerRepository = customerRepository;
         this.contactRepository = contactRepository;
-        this.authenticationHandler = authenticationHandler;
     }
 
     @Override
@@ -137,5 +138,21 @@ public class ImpCustomerService implements ICustomerService {
         foundCustomer.get().setEnable(Boolean.FALSE);
         customerRepository.save(foundCustomer.get());
         return DevMessageConstant.Customer.LOCKED_ACCOUNT;
+    }
+
+    @Override
+    public List<Customer> searchCustomerBirthdayToday() {
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        String realtime = currentTime.toString().substring(5 , 10);
+
+        List<Customer> customers = new ArrayList<>();
+        for (Customer item : customerRepository.findAll()) {
+            if (item.getBirthday() != null) {
+                String birthdayCustomer = item.getBirthday().toString().substring(5, 10);
+                if (realtime.equals(birthdayCustomer))
+                    customers.add(item);
+            }
+        }
+        return customers;
     }
 }

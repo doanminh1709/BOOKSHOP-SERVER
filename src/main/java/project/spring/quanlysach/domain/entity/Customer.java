@@ -1,5 +1,6 @@
 package project.spring.quanlysach.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import project.spring.quanlysach.domain.entity.base.AbstractAuditingEntity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,7 +30,6 @@ public class Customer extends AbstractAuditingEntity {
     @NotBlank
     private String phone;
     private String address;
-//    @Email(message = "Email is not valid")
     private String email;
     @NotEmpty(message = "Username must not be empty")
     @Size(min = 6, max = 20, message = "Username must be between 6 and 20 characters")
@@ -39,6 +40,8 @@ public class Customer extends AbstractAuditingEntity {
             message = "Password is not valid")
     private String password;
 
+    @JsonFormat(pattern =CommonConstant.FORMAT_DATE_PATTERN)
+    private Date birthday;
     private boolean locked = Boolean.FALSE;
 
     private boolean enable = Boolean.FALSE;
@@ -63,13 +66,13 @@ public class Customer extends AbstractAuditingEntity {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PostComment> postComments = new ArrayList<>();
 
-    public Customer(String fullName, String phone, String address, String email, String username, String password) {
+    public Customer(String fullName, String phone, String address, String email, Date birthday, String username, String password) {
         this.fullName = fullName;
         this.phone = phone;
         this.address = address;
         this.email = email;
+        this.birthday = birthday;
         this.username = username;
         this.password = password;
     }
-
 }

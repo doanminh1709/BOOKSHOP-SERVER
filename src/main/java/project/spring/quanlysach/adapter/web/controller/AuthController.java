@@ -3,7 +3,6 @@ package project.spring.quanlysach.adapter.web.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import project.spring.quanlysach.adapter.web.base.RestApiV0;
 import project.spring.quanlysach.adapter.web.base.VsResponseUtil;
@@ -31,7 +30,7 @@ public class AuthController {
 
     @PostMapping(UrlConstant.Auth.SIGN_UP)
     @ApiOperation(value = "Register account's user")
-    public ResponseEntity<?> registerUser(@RequestBody @Valid CustomerDTO customerDTO) throws MessagingException {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid CustomerDTO customerDTO) throws Exception {
         return VsResponseUtil.ok(registrationAccountService.register(customerDTO));
     }
 

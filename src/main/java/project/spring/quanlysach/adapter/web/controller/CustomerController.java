@@ -3,8 +3,6 @@ package project.spring.quanlysach.adapter.web.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import project.spring.quanlysach.adapter.web.base.RestApiV0;
 import project.spring.quanlysach.adapter.web.base.VsResponseUtil;

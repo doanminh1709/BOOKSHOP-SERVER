@@ -17,7 +17,6 @@ import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
-
 @Service
 public class RefreshTokenService {
 
@@ -59,7 +58,6 @@ public class RefreshTokenService {
         return true;
     }
 
-    //delete by user
     @Transactional
     public void deleteByCustomer(int customerId) {
         Optional<Customer> customer = customerRepository.findById(customerId);

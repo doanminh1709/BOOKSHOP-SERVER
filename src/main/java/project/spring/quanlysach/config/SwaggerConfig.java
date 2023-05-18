@@ -25,8 +25,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("BookShop server")
-                .description("BOOKSHOP SERVER")
+        return new ApiInfoBuilder().title("My Bookshop")
+                .description("This is my bookshop server")
                 .contact(new Contact("Minh Doan", "...", "doanminh11082002@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.html")

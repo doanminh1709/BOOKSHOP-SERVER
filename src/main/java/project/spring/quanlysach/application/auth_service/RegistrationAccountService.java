@@ -17,6 +17,8 @@ import project.spring.quanlysach.domain.entity.Role;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +52,10 @@ public class RegistrationAccountService {
     //register
 
     @Transactional
-    public String register(CustomerDTO customerDTO) throws MessagingException {
+    public String register(CustomerDTO customerDTO) throws ParseException {
         boolean checkEmail = emailValidation.test(customerDTO.getEmail());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         if (!checkEmail) {
             throw new VsException(UserMessConstant.ERR_NO_DATA_RESULT,
                     String.format(DevMessageConstant.Common.EMAIL_NOT_VALID, customerDTO.getEmail()));
@@ -84,6 +88,7 @@ public class RegistrationAccountService {
                             customerDTO.getPhone(),
                             customerDTO.getAddress(),
                             customerDTO.getEmail(),
+                            sdf.parse(customerDTO.getBirthday()),
                             customerDTO.getUsername(),
                             passwordEncoder.encode(customerDTO.getPassword())
                     );
@@ -108,6 +113,7 @@ public class RegistrationAccountService {
                             customerDTO.getPhone(),
                             customerDTO.getAddress(),
                             customerDTO.getEmail(),
+                            sdf.parse(customerDTO.getBirthday()),
                             customerDTO.getUsername(),
                             passwordEncoder.encode(customerDTO.getPassword())
                     );

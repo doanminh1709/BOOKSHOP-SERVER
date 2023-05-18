@@ -11,8 +11,6 @@ import project.spring.quanlysach.domain.entity.Invoice;
 import project.spring.quanlysach.domain.entity.InvoiceDetail;
 import project.spring.quanlysach.domain.entity.InvoiceDetailId;
 import project.spring.quanlysach.domain.entity.Product;
-
-
 @Mapper(componentModel = "spring")
 public interface InvoiceDetailMapper {
 
